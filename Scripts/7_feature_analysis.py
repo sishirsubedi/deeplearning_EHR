@@ -1,6 +1,5 @@
 import pandas as pd
 import seaborn as sns
-import numpy as np
 import matplotlib.pylab as plt
 
 features = pd.read_csv("~/ghub/Data/final_features.csv")

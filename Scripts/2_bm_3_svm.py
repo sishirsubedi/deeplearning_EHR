@@ -1,12 +1,8 @@
 import pandas as pd
-
 from sklearn.svm import SVC
-from sklearn.model_selection import KFold
-from sklearn.model_selection import StratifiedKFold,cross_val_predict
+from sklearn.model_selection import cross_val_predict
 from sklearn import metrics
 import numpy as np
-import matplotlib.pylab as plt
-
 
 
 def lsvm(xdata,ydata,cv_):

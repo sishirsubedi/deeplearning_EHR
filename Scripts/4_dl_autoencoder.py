@@ -1,20 +1,13 @@
 import seaborn as sns
 from pylab import rcParams
 from sklearn.model_selection import train_test_split
-from keras.models import Model, load_model
-from keras.layers import Input, Dense
-from keras.callbacks import ModelCheckpoint, TensorBoard
+from keras.models import Model
+from keras.layers import Input
 from keras import regularizers
-import h5py
-import pandas as pd
-import numpy as np
-from sklearn import preprocessing
-from sklearn.model_selection import KFold
 import matplotlib.pylab as plt
 from keras.models import Sequential
 from keras.layers import Dense
 import pandas as pd
-import numpy as np
 from sklearn import preprocessing
 from sklearn.model_selection import KFold
 

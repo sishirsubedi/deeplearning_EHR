@@ -5,7 +5,7 @@ import matplotlib.pylab as plt
 from sklearn.decomposition import PCA
 
 
-## experimental patient data
+## experimental cancer data
 df_all_data = pd.read_csv("~/ghub/df_final_Patientid.csv")
 df_all_data = df_all_data.iloc[:,1:]
 df_all_data.head(10)

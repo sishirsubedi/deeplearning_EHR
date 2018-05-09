@@ -1,15 +1,13 @@
 import pandas as pd
 import seaborn as sns
-from sklearn.naive_bayes import GaussianNB
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.svm import SVC
-from sklearn.model_selection import KFold
-from sklearn.model_selection import StratifiedKFold,cross_val_predict
+from sklearn.model_selection import cross_val_predict
 from xgboost.sklearn import XGBClassifier
 from sklearn import metrics
 import numpy as np
-import matplotlib.pylab as plt
+
 
 def correlation_info(datamatrix,th,drop,draw):
     print("correlation_info running ... ")

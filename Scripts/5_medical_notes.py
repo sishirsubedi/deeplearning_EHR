@@ -1,12 +1,9 @@
-import seaborn as sns
-import pandas as pd
 import numpy as np
 import matplotlib.pylab as plt
 import pandas as pd
 import random
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
-from nltk.corpus import stopwords
 from matplotlib_venn import venn2
 
 df= pd.read_csv("~/ghub/Data/medical_notes.csv")
@@ -95,7 +92,7 @@ for i in range(0,4):
 feature_sum = pd_tf_idf.sum(axis=0).values
 row = feature_sum
 patient_words = []
-for i in range(0,50):
+for i in range(0,250):
     print(pd_tf_idf.columns[np.argmax(row)])
     patient_words.append(pd_tf_idf.columns[np.argmax(row)])
     row[np.argmax(row)] =0
@@ -134,7 +131,7 @@ for i in range(0,4):
 feature_sum = pd_tf_idf.sum(axis=0).values
 row = feature_sum
 normal_words = []
-for i in range(0,50):
+for i in range(0,250):
     print(pd_tf_idf.columns[np.argmax(row)])
     normal_words.append(pd_tf_idf.columns[np.argmax(row)])
     row[np.argmax(row)] =0
