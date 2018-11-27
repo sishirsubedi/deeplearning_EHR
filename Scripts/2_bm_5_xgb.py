@@ -11,8 +11,6 @@ from sklearn.model_selection import GridSearchCV
 
 
 df_all_patientdata= pd.read_csv("~/ghub/Data/df_final_ICUid_sample.csv")
-df_all_patientdata= pd.read_csv("~/ghub/df_final_Patientid.csv")
-df_all_patientdata= pd.read_csv("test.csv")
 df_all_patientdata = df_all_patientdata.iloc[:,1:]
 df_all_patientdata.head(10)
 X_train, X_test, y_train, y_test = train_test_split( df_all_patientdata.iloc[:,0:df_all_patientdata.shape[1]-1], df_all_patientdata.iloc[:,df_all_patientdata.shape[1]-1], test_size=0.33, random_state=42)

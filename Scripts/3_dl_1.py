@@ -7,14 +7,12 @@ from sklearn.model_selection import KFold
 import matplotlib.pylab as plt
 
 
-
 ## experimental data
 df_all_patientdata= pd.read_csv("~/ghub/Data/df_final_ICUid.csv")
 #df_all_data = pd.read_csv("test.csv")
 #df_all_patientdata = df_all_patientdata.iloc[:,1:]
 df_all_patientdata.head(10)
 print (df_all_patientdata.shape)
-
 
 ### center data
 x_data =df_all_patientdata.iloc[:,0:df_all_patientdata.shape[1]-1]
@@ -57,4 +55,3 @@ for train, test in kf.split(df_all_patientdata):
     #scores = model.evaluate(trainx, trainy)
     print("\n%s: %.2f%%" % (model.metrics_names[1], scores[1]*100))
     result.append( scores[1]*100)
-

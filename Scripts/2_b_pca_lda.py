@@ -18,7 +18,6 @@ df_all_data.head(10)
 
 
 ## pca analysis
-
 pca = PCA(n_components=2)
 principalComponents = pca.fit_transform(x_scaled)
 principalDf = pd.DataFrame(data = principalComponents, columns = ['principal component 1', 'principal component 2'])
@@ -39,8 +38,6 @@ ax.legend(targets)
 ax.grid()
 
 ## here we see first two components overlap heavily
-
-
 pca = PCA(n_components=14)
 X_train_pca = pca.fit_transform(x_scaled)
 plt.bar(range(0, 14), pca.explained_variance_ratio_, alpha=0.5, align='center')
@@ -52,13 +49,11 @@ plt.show()
 
 
 #### LDA analysis
-
 numberoflabels = 2
 mean_vecs = []
 for label in range(numberoflabels):
     labeldata = df_all_data[df_all_data.readmit == label]
     mean_vecs.append(np.mean(labeldata.iloc[:,0:labeldata.shape[1]-1], axis=0))
-
 
 
 ## within covariance
@@ -95,8 +90,6 @@ print('Eigenvalues in decreasing order:\n')
 for eigen_val in eigen_pairs:
     print(eigen_val[0])
 
-
-
 tot = sum(eigen_vals.real)
 discr = [(i / tot) for i in sorted(eigen_vals.real, reverse=True)]
 cum_discr = np.cumsum(discr)
@@ -112,4 +105,3 @@ plt.legend(loc='best')
 plt.tight_layout()
 # plt.savefig('./figures/lda1.png', dpi=300)
 plt.show()
-

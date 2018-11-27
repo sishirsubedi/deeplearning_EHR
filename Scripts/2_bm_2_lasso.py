@@ -19,32 +19,25 @@ def logregression(xdata,ydata, cv_,regmethod ,regval):
     if regval != 1.0:
         return predicted
 
-
-# df_all_patientdata = pd.read_csv("~/ghub/Data/df_final_Patientid.csv")
-# df_all_patientdata= pd.read_csv("~/ghub/Data/test.csv")
 df_all_patientdata= pd.read_csv("~/ghub/Data/df_final_ICUid_sample.csv")
 df_all_patientdata.shape
 df_all_patientdata.columns
 df_all_patientdata.head(2)
 
 df_all_patientdata.shape
-# columns_todrop = df_all_patientdata.filter(like='marital_status').columns
-# df_all_patientdata = df_all_patientdata.drop(columns_todrop,axis =1)
-# columns_todrop = df_all_patientdata.filter(like='insurance').columns
-# df_all_patientdata = df_all_patientdata.drop(columns_todrop,axis =1)
-# columns_todrop = df_all_patientdata.filter(like='los').columns
-# df_all_patientdata = df_all_patientdata.drop(columns_todrop,axis =1)
-# columns_todrop = df_all_patientdata.filter(like='gender').columns
-# df_all_patientdata = df_all_patientdata.drop(columns_todrop,axis =1)
+columns_todrop = df_all_patientdata.filter(like='marital_status').columns
+df_all_patientdata = df_all_patientdata.drop(columns_todrop,axis =1)
+columns_todrop = df_all_patientdata.filter(like='insurance').columns
+df_all_patientdata = df_all_patientdata.drop(columns_todrop,axis =1)
+columns_todrop = df_all_patientdata.filter(like='los').columns
+df_all_patientdata = df_all_patientdata.drop(columns_todrop,axis =1)
+columns_todrop = df_all_patientdata.filter(like='gender').columns
+df_all_patientdata = df_all_patientdata.drop(columns_todrop,axis =1)
 df_all_patientdata.shape
-
-
-
-# df_all_patientdata.shape
-# df_all_patientdata.columns
-# df_all_patientdata.isnull().values.any()
-# df_all_patientdata = df_all_patientdata.iloc[:,1:]
-# df_all_patientdata.head(10)
+df_all_patientdata.columns
+df_all_patientdata.isnull().values.any()
+df_all_patientdata = df_all_patientdata.iloc[:,1:]
+df_all_patientdata.head(10)
 
 
 ### center data
@@ -54,14 +47,9 @@ x_scaled.columns = x_data.columns
 df_all_patientdata.iloc[:,0:df_all_patientdata.shape[1]-1] = x_scaled
 df_all_patientdata.head(10)
 
-
-
 X_train, X_test, y_train, y_test = train_test_split( df_all_patientdata.iloc[:,0:df_all_patientdata.shape[1]-1], df_all_patientdata.iloc[:,df_all_patientdata.shape[1]-1], test_size=0.25, random_state=42)
 
-
-
 logregression(X_train,y_train,cv_=2,regmethod='l2',regval=1.0)
-
 
 param_grid = {
     "regularization_strength":[0.001,0.002,0.003,0.004,0.005,0.006,0.007,0.008,0.009,0.01,0.02,0.04,0.06,0.08, 0.1,0.2,0.4,0.6,0.8,1.0]
@@ -83,8 +71,6 @@ for p in penalties:
     model.fit(X_train, y_train)
     acc= model.score(X_test, y_test)
     print(p,acc, np.count_nonzero(model.coef_[0]))
-
-
 
 
 model = LogisticRegression(penalty='l1', C=0.006,fit_intercept=False)
@@ -112,16 +98,10 @@ plt.xlabel('False Positive Rate')
 plt.show()
 
 feature_data = df_all_patientdata.loc[:,lasso_features]
-
-
-
 control = df_all_patientdata.loc[df_all_patientdata['readmit']==0.0,:]
 control = control.loc[:,lasso_features]
-
-
 case = df_all_patientdata.loc[df_all_patientdata['readmit']==1.0,:]
 case = case.loc[:,lasso_features]
-
 
 fig = plt.figure()
 for i in range(0,24):
@@ -129,5 +109,3 @@ for i in range(0,24):
     sns.distplot(control.iloc[:,i],label='no-readmit')
     sns.distplot(case.iloc[:,i],label='readmit')
 plt.legend(bbox_to_anchor=(1.05, 0), loc='lower left', borderaxespad=0.)
-
-

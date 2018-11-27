@@ -5,14 +5,10 @@ import matplotlib.pylab as plt
 features = pd.read_csv("~/ghub/Data/final_features.csv")
 features.head(2)
 
-
-
 df_nlp = pd.read_csv("~/ghub/Data/nlp_output.csv")
 df_nlp.head(2)
 
 nlp_features = features['features'].values
-
-
 
 df_train= pd.read_csv("~/ghub/Data/train_data.csv")
 df_train.head(2)
@@ -57,17 +53,12 @@ chart = pd.read_csv("~/ghub/Data/D_ITEMS.csv")
 chart.head(2)
 chart = chart.iloc[:,[1,2]]
 
-
 ids = pd.concat([lab,chart],axis=0)
 ids.shape
 ids.head(2)
 
-
-
-
 temp = features['features'][10:20].copy()
 features['features'].replace(regex=True,inplace=True,to_replace=r'\D',value=r'')
-
 
 nlp_features_name =[]
 for f in features['features'].values:

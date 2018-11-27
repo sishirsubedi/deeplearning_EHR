@@ -12,12 +12,10 @@ from sklearn import preprocessing
 from sklearn.model_selection import KFold
 
 
-
 sns.set(style='whitegrid', palette='muted', font_scale=1.5)
 rcParams['figure.figsize'] = 14, 8
 RANDOM_SEED = 42
 LABELS = ["Normal", "Cancer"]
-
 
 df= pd.read_csv("~/ghub/Data/df_final_ICUid.csv")
 #df= pd.read_csv("test.csv")
@@ -26,16 +24,12 @@ df=df.iloc[:,1:]
 df.shape
 df.isnull().values.any()
 
-
-
 ### center data
 x_data =df.iloc[:,0:df.shape[1]-1]
 x_scaled = pd.DataFrame(preprocessing.scale(x_data))
 x_scaled.columns = x_data.columns
 df.iloc[:,0:df.shape[1]-1] = x_scaled
 df.head(10)
-
-
 
 count_classes = pd.value_counts(df['IsReadmitted'], sort = True)
 count_classes.plot(kind = 'bar', rot=0)
@@ -88,7 +82,6 @@ X_train.shape
 
 input_dim = X_train.shape[1]
 encoding_dim = input_dim
-
 
 input_layer = Input(shape=(input_dim, ))
 encoder = Dense(encoding_dim, activation="relu",  activity_regularizer=regularizers.l1(10e-5))(input_layer)

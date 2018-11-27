@@ -11,12 +11,7 @@ import matplotlib.pylab as plt
 import numpy as np
 
 df_all_patientdata = pd.read_csv("~/ghub/Data/df_final_Patientid.csv")
-df_all_patientdata= pd.read_csv("~/ghub/Data/df_final_ICUid.csv")
-df_all_patientdata= pd.read_csv("~/ghub/Data/test.csv")
-
 df_all_patientdata.shape
-
-for items in df_all_patientdata.columns:print (items)
 
 df_all_patientdata.shape
 columns_todrop = df_all_patientdata.filter(like='marital_status').columns
@@ -28,7 +23,6 @@ df_all_patientdata = df_all_patientdata.drop(columns_todrop,axis =1)
 columns_todrop = df_all_patientdata.filter(like='gender').columns
 df_all_patientdata = df_all_patientdata.drop(columns_todrop,axis =1)
 df_all_patientdata.shape
-
 
 df_all_patientdata.isnull().values.any()
 df_all_patientdata = df_all_patientdata.iloc[:,1:]
@@ -77,7 +71,6 @@ plt.ylim([-0.1, 1.2])
 plt.ylabel('True Positive Rate')
 plt.xlabel('False Positive Rate')
 plt.show()
-
 
 importances = model.feature_importances_
 indices = np.argsort(importances)[-20:]

@@ -166,8 +166,6 @@ print (vectorizer.vocabulary_)
 
 keywords = ['follow','moderate','home','normal','relax','severe','bleeding','infection','abnormal','critical']
 
-
-
 smatrix = vectorizer.transform(all_documents)
 smatrix.todense()
 

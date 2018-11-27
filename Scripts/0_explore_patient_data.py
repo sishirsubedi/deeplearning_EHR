@@ -1,6 +1,8 @@
 import pandas as pd
-import matplotlib.pyplot as plt
 from datetime import datetime
+import baseline_models
+from sklearn import preprocessing
+import matplotlib.pylab as plt
 import random
 import numpy as np
 from sklearn.cluster import KMeans
@@ -98,8 +100,6 @@ df_pinfo.to_csv("patient_information.csv",index=False)
 
 
 ### clustering
-
-
 df_all_patientdata= pd.read_csv("~/ghub/Data/df_final_ICUid.csv")
 df_all_patientdata.head(2)
 df_all_patientdata.shape
@@ -115,4 +115,24 @@ for k in K:
     kmeanModel.fit(X)
     distortions.append(sum(np.min(cdist(X, kmeanModel.cluster_centers_, 'euclidean'), axis=1)) / X.shape[0])
 
+## experimental patient data
+df_all_data = pd.read_csv("~/ghub/df_final_Patientid.csv")
+df_all_data = df_all_data.iloc[:,1:]
+df_all_data.head(10)
+print (df_all_data.shape)
 
+### center data
+x_data =df_all_data.iloc[:,0:df_all_data.shape[1]-1]
+x_scaled = pd.DataFrame(preprocessing.scale(x_data))
+x_scaled.columns = x_data.columns
+df_all_data.iloc[:,0:df_all_data.shape[1]-1] = x_scaled
+df_all_data.head(10)
+
+## visualize data
+df_all_data.iloc[:,1:15].diff().hist(color='k', alpha=0.5, bins=50)
+df_all_data.iloc[:,1:10].plot.box()
+
+# Correlation filter > 0.8 :  1  features from the dataset
+todrop = baseline_models.correlation_info(df_all_data.iloc[:,0:df_all_data.shape[1]],0.8,drop=0,draw=1)
+df_all_data.drop(todrop, axis=1, inplace=True)
+print (df_all_data.shape)

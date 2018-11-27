@@ -5,7 +5,6 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.stats import norm
-
 from keras.layers import Input, Dense, Lambda
 from keras.models import Model
 from keras import backend as K
@@ -82,4 +81,3 @@ train_data = df_new_data.iloc[:, 1:]
 col = train_data.shape[1]
 X_train, y_train = train_data.iloc[:, 0: col - 1], train_data.iloc[:, col - 1]
 scores = cross_val_score(clf, X_train, y_train, cv=5)
-
